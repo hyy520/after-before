@@ -7,3 +7,5 @@
 三、实现宽高等比的自适应布局
 
 四、清除浮动
+
+![](http://img.xiumi.us/xmi/ua/QoCL/i/0692c23c694920e82996261c92b907b4-sz_45277.png@1l_640w.png)
