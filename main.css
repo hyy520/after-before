@@ -1,0 +1,291 @@
+/*********************************************************重置样式*************************************************************/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, button, input, select, textarea {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+i, cite, em, var, dfn, address {
+    font-style: normal;
+}
+
+body {
+    font: 14px "Microsoft YaHei",Tahoma,Arial,sans-serif !important;
+    color: #333;
+    height: 100%;
+    background: #f4f4f4;
+}
+
+html {
+    height: 100%;     
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+a:hover {
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a:active, a:focus {
+    outline: none;
+}
+
+b {
+    font-weight: normal;
+}
+
+input, button {
+    border: none;
+    outline: none;
+}
+
+input:not([type="radio"]) {
+    appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    -moz-appearance: none;
+}
+
+button:active {
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+}
+
+textarea {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    resize: none;
+}
+
+input {
+    border-radius: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: #232323; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+button {
+    background: none;
+}
+
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.header{
+    background: #131418;
+    height: 58px;
+    line-height: 58px;
+    text-align: center;
+    font-size: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 51;
+    color: #fff;
+}
+.content{width:1024px; margin:60px auto 0; padding: 20px 0; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);}
+.item li{border-bottom: 1px solid #eee; padding: 20px;}
+.item li .title{font-size: 24px; padding: 0 0 20px 0;} 
+.item li h2{font-size: 16px; padding: 20px 0 10px 0;}
+.item li .con h3{font-size: 16px; padding:10px; background:#eee;}
+
+/*
+:after和:before的特性：
+
+:after或:before会在元素内容的后面或前面，元素结束符前或后面插入一个子元素。这个元素就叫做:after或:before。伪元素有一下特性：
+
+1、要配合content使用，否则没有效果，content可以为空；
+2、默认为行内元素，所以默认是不能设置宽高的，如果需要设置，需要像行内元素的处理方式一样；
+3、和其他元素一样，也会继承父级的一些可以继承的属性；
+4、在源码中找不到伪元素，所以不能通过DOM对他进行操作。
+*/
+
+
+/***************************************************文字、图片、序列号、属性值等的插入********************************************/
+
+/***************插入文字****************/
+.item li .con1 h3:after{content:"前端开发"}
+
+/****************嵌入文字符号****************/
+.item li .con2 h3{
+    quotes:"(" ")";  /*利用元素的quotes属性指定文字符号*/
+}
+.item li .con2 h3:before{
+    content:open-quote;
+}
+.item li .con2 h3:after{
+    content:close-quote;
+}
+.item li .con2 h4{
+    quotes:"\"" "\"";  /*添加双引号要转义*/
+    font-size: 16px; padding:10px; background:#eee;
+}
+.item li .con2 h4:before{
+    content:open-quote;
+}
+.item li .con2 h4:after{
+    content:close-quote;
+}
+/****************插入图片****************/
+.item li .con3 h3:after{
+    content:url(http://ido321.qiniudn.com/wp-content/themes/yusi1.0/img/new.gif)
+}
+/****************插入元素属性值****************/
+.item li .con4 h3 a:after{
+     content:attr(href);
+}
+/****************插入项目编号****************/
+.item li .con5 h3 ul li:before{
+    content:counter(my)'.';
+}
+.item li .con5 h3 ul li{
+    counter-increment:my;
+}
+
+
+/*************************************清除浮动****************************************/
+.clearfix:after,.clearfix:before{
+  content:"";
+  display:table;
+  clear:both;
+  height:0;
+}
+.clearfix{
+  zoom:1;/*兼容ie7及以下的ie浏览器清除浮动*/
+}
+
+
+/************************************* 图片等垂直居中 ************************************
+img元素作为行内块元素，他的水平居中可以跟文字一样处理，直接使用text-align:center；但是垂直怎么居中呢？
+其实我们还有一个垂直对齐方式的属性:vertical-align，可以实现垂直方向的元素对齐方式。
+当然，直接单独使用vertical-align:middle并不能使img垂直居中，它的垂直居中，其实是需要一个参照物的，
+而且这个参照物的高度还必须和父级一样高。很明显，我们可以使用伪元素实现这个参照物的功能。实际代码如下：
+
+*****************************************************************************************/
+.box{
+  height:300px;
+  width:300px;  
+  background: #eee; 
+  text-align:center;/*水平居中必须的代码*/
+  font-size:0;/*清除display:inline-block产生的间隙*/
+  letter-spacing:-1em;/*清除display:inline-block产生的间隙*/
+}
+.box img{
+  vertical-align:middle;/*垂直居中必须的代码*/
+}
+.box:after{
+  content:"";
+  display:inline-block;
+  width:0;/*减少伪元素宽度对布局的影响*/
+  height:100%;/*垂直居中必须的代码*/
+  vertical-align:middle;
+  font-size:0;     
+}
+
+/* *****************************************************************************************
+使用:after和:before实现宽高等比的自适应布局
+
+通过将元素中的子元素定位布局，然后再在元素上面添加伪元素，通过伪元素的padding-top值设置百分比，
+可以实现元素宽高的等比设置，而不需要通过js计算。核心css代码如下：
+
+在这里无论元素item-img-box的宽度怎么变化，他的高度都是宽度的80%，通过改变padding-top可以改变宽高比。
+这个方法在有图片的响应式列表排版中会有比较大作用，可以是图片在响应式中不同尺寸设备不变形，而且排版不变。实际例子如下：
+******************************************************************************************/
+.list1{
+  width:80%;
+  margin:20px 0 20px 0;
+} 
+.teach-list{
+    overflow: hidden;
+}
+.teach-list li{
+    float: left;
+    width: 33.3333%;
+    padding: 0;
+    border:none;
+}
+.item-box{
+    display: block;
+    padding: 0 4px 5px;
+}
+.item-img-box{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+}
+.item-img-box:before{
+    content: "";
+    display: block;
+    padding-top: 80%;
+}
+.item-img{
+    position: absolute;
+    left:50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    /*-webkit-transform: translate(50%, 50%);
+    transform: translate(50%, 50%);*/
+}
+/* .videoplay-icon{
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 100;
+    height: 20px;
+    width: 20px;
+    background: url(../images/icon/ic_flying_play@2x.png) no-repeat center;
+    background-size: cover;
+    margin-left: -10px;
+    margin-top: -10px;
+} */
+.item-img img{
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    height: 100%;
+}
